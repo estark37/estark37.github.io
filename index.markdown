@@ -28,5 +28,10 @@ Other places on the web you can find me:
 * [Twitter](https://twitter.com/estark37/)
 * [Stack Overflow](https://stackoverflow.com/users/1867669/emily)
 
+You can read popular press about my work
+[here](https://www.wired.com/story/google-chrome-kill-url-first-steps/),
+[here](https://www.bbc.com/news/technology-47071518), and
+[here](https://www.economist.com/science-and-technology/2015/07/30/the-big-bug-hunt).
+
 Outside of work, I live with my husband and one year old son in the San
 Francisco Bay Area. I enjoy baking, reading, yoga, and hiking in my free time.
