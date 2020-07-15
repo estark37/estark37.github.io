@@ -7,11 +7,10 @@ title: Publications
 
 The following is a reverse chronological list of my academic publications:
 
-[Measuring Identity Confusion with Uniform Resource Locators]
-(https://research.google/pubs/pub49166/). Joshua Reynolds, Deepak Kumar, Zane
-Ma, Rohan Subramanian, Meishan Wu, Martin Shelton, Joshua Mason,
-__Emily Stark__, Michael Bailey. _ACM Conference on Human Factors in Computing
-Systems (CHI), 2020_.
+[Measuring Identity Confusion with Uniform Resource Locators](https://research.google/pubs/pub49166/).
+Joshua Reynolds, Deepak Kumar, Zane Ma, Rohan Subramanian, Meishan Wu, Martin
+Shelton, Joshua Mason, __Emily Stark__, Michael Bailey. _ACM Conference on Human
+Factors in Computing Systems (CHI), 2020_.
 
 [Does Certificate Transparency Break the Web? Measuring Adoption and Error
 Rate](https://research.google/pubs/pub47551.pdf). __Emily Stark__, Ryan Sleevi,
@@ -70,7 +69,8 @@ Factors in Computing Systems (CHI), 2009_.
 
 I've served on program committees for [USENIX Security
 2018](https://www.usenix.org/conference/usenixsecurity18), [IEEE Symposium on
-Security and Privacy 2020](https://www.ieee-security.org/TC/SP2020/), and [The
-Web Conference 2020](https://www2020.thewebconf.org/). I co-chaired the [USENIX
-HotSec 2019](https://www.usenix.org/conference/hotsec19) workshop, and will be
-co-chairing again in 2020.
+Security and Privacy 2020](https://www.ieee-security.org/TC/SP2020/) and
+[2021](https://www.ieee-security.org/TC/SP2021/), and [The Web Conference
+2020](https://www2020.thewebconf.org/). I co-chaired the [USENIX HotSec
+2019](https://www.usenix.org/conference/hotsec19) workshop, and will be
+co-chairing again in 2021.
