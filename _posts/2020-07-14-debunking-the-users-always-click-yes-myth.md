@@ -94,6 +94,12 @@ factors, including the audience and context of the website, will influence the
 acceptance rate. However, I do think these numbers suggest that users do not
 have a constant uniform reaction to permission prompts.
 
+*Update July 22, 2020*: [Bram Bonné](https://twitter.com/BramBonne) pointed me
+to a
+[study](https://www.usenix.org/conference/soups2017/technical-sessions/presentation/bonne)
+where nearly half of participants had denied an Android permission prompt at
+least once in a 6 week period.
+
 ## So what does this mean?
 
 Developers shouldn’t assume that users will always blindly say “yes” to any
