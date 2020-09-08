@@ -29,8 +29,8 @@ Again, this isn’t comprehensive, just some examples that I can think of:
   users that their LinkedIn password has been leaked) or third-party service
   provider ([HaveIBeenPwned](https://haveibeenpwned.com/),
   [a web browser](https://security.googleblog.com/2019/12/better-password-protections-in-chrome.html))
-* Chrome has a feature (“
-  [predictive phishing protection](https://www.blog.google/technology/safety-security/new-security-protections-tailored-you/)”)
+* Chrome has a feature
+  (“[predictive phishing protection](https://www.blog.google/technology/safety-security/new-security-protections-tailored-you/)”)
   that notices when you type a saved password on a suspected phishing site and
   warns you that you may have been phished and should change your password. This
   is similar to a password breach notification, but has some different
