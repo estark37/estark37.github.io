@@ -171,7 +171,7 @@ didn’t:
   any papers on antivirus, though it’s quite possible I missed them.
 * I didn’t find any **_in situ_ experiments** that test how users respond to
   different after-the-fact warning variants in real-world settings.
-* I didn’t find much work on *habituation for after-the-fact warnings*
+* I didn’t find much work on **habituation for after-the-fact warnings**
   specifically (despite the large body about warning habituation generally and
   for particular types of warnings such as certificate warnings). The Redmiles
   paper hypothesized that one of their findings may have been due to warning
@@ -182,8 +182,8 @@ didn’t:
   more effective than receiving the warning from a third party (such as
   [HaveIBeenPwned](https://haveibeenpwned.com/) or a
   [web browser](https://security.googleblog.com/2019/12/better-password-protections-in-chrome.html))?
-  I found another paper (
-  [“Data Breaches: User Comprehension, Expectations, and Concerns with Handling Exposed Data”](https://research.google/pubs/pub47000/)
+  I found another paper
+  ([“Data Breaches: User Comprehension, Expectations, and Concerns with Handling Exposed Data”](https://research.google/pubs/pub47000/)
   by Karunakaran et al.) that dives into this question a bit. The authors
   surveyed people on whether they are comfortable with various use cases for
   the data exposed in data breaches. For example, are people comfortable with a
