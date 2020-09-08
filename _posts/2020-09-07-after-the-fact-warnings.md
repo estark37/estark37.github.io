@@ -21,7 +21,7 @@ survey -- just some thoughts from the papers that caught my eye the most.
 
 # Real world examples
 
-To set the stage, here are some real-world examples of after-the-fact warnings.
+To set the stage, here are some real world examples of after-the-fact warnings.
 Again, this isn’t comprehensive, just some examples that I can think of:
 
 * Antivirus notifications telling people that they have malware on their device
