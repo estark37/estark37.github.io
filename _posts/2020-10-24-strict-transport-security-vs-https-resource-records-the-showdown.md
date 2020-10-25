@@ -239,14 +239,19 @@ answer to both questions is “no”:
   https:// as a default scheme provides a small amount of defense in depth
   against the various weaknesses I’ve discussed above.
 
-Clearly, there’s a lot going on in this space. My prediction is that we’ll end up with a patchwork of different HTTPS upgrading mechanisms that each play a slightly different role. I also predict that we’ll see some slight weakening of security in the name of deployability and scalability; for example, perhaps fewer sites will be preloaded in favor of slightly less secure but more scalable HTTPS upgrading mechanisms like HTTPS RRs.
+Clearly, there’s a lot going on in this space. My prediction is that we’ll end
+up with a patchwork of different HTTPS upgrading mechanisms that each play a
+slightly different role. I also predict that we’ll see some slight weakening of
+security in the name of deployability and scalability; for example, perhaps
+fewer sites will be preloaded in favor of slightly less secure but more scalable
+HTTPS upgrading mechanisms like HTTPS RRs.
 
 <small><i>Thanks to [Kaustubha Govind](https://twitter.com/cos_theta) and Dan
 McArdle for explaining many of the things in this post to me!</i></small>
 
 [^1]: [This dashboard](https://stats.dnssec-tools.org) gives a per-TLD breakdown
       but doesn’t have stats on what percentage of clients are using resolvers
-      that validate DNSSEC.
+      that validate DNSSEC. Thanks to Jacob Hoffman-Andrews for the pointer!
 
 [^2]: There are use cases other than HTTPS upgrading where HTTPS RRs
       provide more notable value even if retrieved over plaintext -- in
