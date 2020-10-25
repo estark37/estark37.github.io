@@ -251,7 +251,8 @@ McArdle for explaining many of the things in this post to me!</i></small>
 
 [^1]: [This dashboard](https://stats.dnssec-tools.org) gives a per-TLD breakdown
       but doesn’t have stats on what percentage of clients are using resolvers
-      that validate DNSSEC. Thanks to Jacob Hoffman-Andrews for the pointer!
+      that validate DNSSEC. Thanks to
+      [Jacob Hoffman-Andrews](https://twitter.com/j4cob) for the pointer!
 
 [^2]: There are use cases other than HTTPS upgrading where HTTPS RRs
       provide more notable value even if retrieved over plaintext -- in
