@@ -78,15 +78,22 @@ What about resolvers further upstream? It depends on the extent to which
 is deployed for the domain in question and whether the client is using a
 resolver that validates DNSSEC. DNSSEC is a system for authenticating the data
 served via DNS, but it’s spottily deployed, 20 years after it came into
-existence. I can’t seem to find a canonical, up-to-date data source about how
-widely it’s deployed (please send me pointers if you know of any)[^1]. In theory, if
-all the relevant zone administrators used DNSSEC to sign their records, and the
+existence. ~~I can’t seem to find a canonical, up-to-date data source about how
+widely it’s deployed (please send me pointers if you know of any)[^1].~~ _Update
+Oct 26_: Warren Kumari and [Brian Dickson](https://twitter.com/panvore) pointed
+me to some [APNIC data](https://stats.labs.apnic.net/dnssec) which suggests that
+about 35% of clients are using a DNSSEC-validating resolver. In theory, if all
+the relevant zone administrators used DNSSEC to sign their records, and the
 client’s resolver validated those signatures, then only the client’s first-hop
 resolver could prevent the https:// upgrade. Any other malicious resolver along
 the path would not be able to forge an HTTPS RR (or lack thereof) that passes
 DNSSEC validation. I’m not sure how common this level of DNSSEC deployment is in
 practice these days, though it seems that a few years ago it was quite
 [uncommon](https://www.usenix.org/system/files/conference/usenixsecurity13/sec13-paper_lian.pdf).
+
+_Update Oct 26:_ Brian Dickson also points out that clients can do DNSSEC
+validation themselves to remove trust from even the first-hop resolver, though I
+believe this is quite uncommon in practice.
 
 ### Attacking the first visit
 
@@ -115,9 +122,14 @@ strictly. That is, when a user encounters an HTTPS certificate error on an STS
 site, the browser is forbidden from giving them the option to bypass the
 certificate error, as it usually would.
 
-As far as I know, there’s no plan for HTTPS RRs to have the same effect; the
+~~As far as I know, there’s no plan for HTTPS RRs to have the same effect; the
 presence of an HTTPS RR would signal that the domain should be contacted over
-https:// only, but doesn’t affect certificate error UI.
+https:// only, but doesn’t affect certificate error UI.~~
+
+_Update Oct 26:_ The current plan of record is for HTTPS RRs to have the same
+effect, though I'm
+[currently](https://github.com/MikeBishop/dns-alt-svc/issues/87#issuecomment-716686941)
+arguing that they shouldn't. (Thanks to Ben Schwartz for the correction.)
 
 This is a topic for another blog post, but my opinion is that it was a mistake
 to make certificate errors non-bypassable for STS. Possibly STS was originally
@@ -191,19 +203,21 @@ RRs:
   the client and the web server; thus HTTPS RRs over plaintext provide some
   security value compared to nothing at all, but very little compared to STS.
 * **Reliability of a new record type**. What happens if a domain hasn’t
-  configured HTTPS RRs? The client should receive a NXDOMAIN response -- and the
+  configured HTTPS RRs? The client should receive a NODATA response -- and the
   client should, ideally, assume that if it receives no response, something
-  funny is afoot and the client should refuse to connect to the site. With this
-  client behavior, as I mentioned above, even with DoH in use, an attacker can
-  selectively block HTTPS RR responses but achieve at most a denial-of-service
-  by doing so. However, it’s not yet known if this behavior is going to be
-  deployable, because it might turn out that in real-world environments, HTTPS
-  RRs get blocked for any number of non-attack reasons. If this is the case and
-  can’t be fixed, then clients might have to allow plain http:// connections
-  when they don’t receive HTTPS RRs responses, which significantly weakens the
-  security properties of https:// upgrades. Chrome is currently planning an
+  funny is afoot and the client should refuse to connect to the site[^3]. With
+  this client behavior, as I mentioned above, even with DoH in use, an attacker
+  can selectively block HTTPS RR responses but achieve at most a
+  denial-of-service by doing so. However, it’s not yet known if this behavior is
+  going to be deployable, because it might turn out that in real-world
+  environments, HTTPS RRs get blocked for any number of non-attack reasons. If
+  this is the case and can’t be fixed, then clients might have to allow plain
+  http:// connections when they don’t receive HTTPS RRs responses, which
+  significantly weakens the security properties of https:// upgrades. Chrome is
+  currently planning an
   [experiment](https://groups.google.com/a/chromium.org/g/blink-dev/c/brZTXr6-2PU/m/g0g8wWwCAwAJ)
-  to investigate how the DNS ecosystem handles a new record type.
+  to investigate how the DNS ecosystem handles a new record type. (Thanks to
+  Eric Orth for a correction in this paragraph.)
 
 ## Just to make things a little more complicated...
 
@@ -257,3 +271,10 @@ McArdle for explaining many of the things in this post to me!</i></small>
 [^2]: There are use cases other than HTTPS upgrading where HTTPS RRs
       provide more notable value even if retrieved over plaintext -- in
       particular, use cases that are aimed at foiling passive attackers.
+
+[^3]: _Update Oct 26_: Eric Orth points out that some types of incorrect
+      responses can be worked around while maintaining security, while others
+      can't. For example, if a client gets an incorrect NXDOMAIN response
+      instead of a NODATA, that's okay; it can be safely treated as a NODATA.
+      But an incorrect SERVFAIL response, on the other hand, must be treated as
+      an attack, because it could signal DNSSEC validation failure.
