@@ -71,6 +71,7 @@ I've served on program committees for [USENIX Security
 2018](https://www.usenix.org/conference/usenixsecurity18), [IEEE Symposium on
 Security and Privacy 2020](https://www.ieee-security.org/TC/SP2020/) and
 [2021](https://www.ieee-security.org/TC/SP2021/), and [The Web Conference
-2020](https://www2020.thewebconf.org/). I co-chaired the [USENIX HotSec
+2020](https://www2020.thewebconf.org/) and
+[2021](https://www2021.thewebconf.org/). I co-chaired the [USENIX HotSec
 2019](https://www.usenix.org/conference/hotsec19) workshop, and will be
 co-chairing again in 2021.
