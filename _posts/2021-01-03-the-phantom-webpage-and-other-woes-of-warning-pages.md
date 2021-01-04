@@ -42,18 +42,18 @@ of bugs. It eventually became clear that
 the design itself was prone to bugginess. There were a few different classes of
 bugs that emerged, to which I will now give colorful names:
 
-* **The phantom page**: When an overlay interstitial was shown, the previous page
-  was still alive but invisible underneath it. The previous page wasn’t unloaded
-  in case the user decided to dismiss the warning, in which case they should be
-  taken straight back to where they were -- but while the interstitial was
-  showing, the user shouldn’t be aware that the previous page was still there.
-  But what would happen if the previous page played audio or video, ran
-  expensive JavaScript code, popped up a permission prompt or alert dialog, or
-  otherwise made its presence known while the interstitial was showing? There
-  was a slew of whack-a-mole bugs where behaviors of the previous page had to be
-  individually suppressed to prevent users from encountering some very strange
-  situations (imagine a permission prompt for “a.com” showing up on top of a
-  security warning for “b.com”).
+* **The phantom page**: When an overlay interstitial was shown, the previous
+  page was still alive but invisible underneath it. The previous page wasn’t
+  unloaded in case the user decided to leave the warning page, in which case
+  they should be taken straight back to where they were -- but while the
+  interstitial was showing, the user shouldn’t be aware that the previous page
+  was still there. But what would happen if the previous page played audio or
+  video, ran expensive JavaScript code, popped up a permission prompt or alert
+  dialog, or otherwise made its presence known while the interstitial was
+  showing? There was a slew of whack-a-mole bugs where behaviors of the previous
+  page had to be individually suppressed to prevent users from encountering some
+  very strange situations (imagine a permission prompt for “a.com” showing up on
+  top of a security warning for “b.com”).
 * **The odd renderer out**: Interstitials were a special type of renderer
   process, and various other Chromium features had to be individually taught how
   to deal with them. For example, DevTools, accessibility features, and context
@@ -70,7 +70,7 @@ bugs that emerged, to which I will now give colorful names:
 Because of these problems, over the years, overlay interstitials became somewhat
 notorious among Chromium developers. For many of these bugs, fixing them would
 have been too costly to be worth it, so they languished open on the bug tracker
-for years. I often joke that rearchitecting interstitials was the best project
+for years. I often joke that re-architecting interstitials was the best project
 I’ve ever worked on, because everyone was so united in their dislike of the
 overlay approach. There were no politics to navigate, no stakeholders to
 convince, no outreach to be done. It was a project composed almost entirely of
@@ -134,9 +134,9 @@ un-pauses the in-progress request with a callback that was provided when the
 overlay was triggered.
 
 But with the committed interstitial pattern, there’s no in-progress navigation
-request to un-pause: we completed the navigation. The general pattern we follow
-instead is to modify some state to record the bypass, and then reload the page;
-the reload picks up the modified state, causing Chrome to suppress the
+request to un-pause; we already completed the navigation. The general pattern we
+follow instead is to modify some state to record the bypass, and then reload the
+page; the reload picks up the modified state, causing Chrome to suppress the
 interstitial and load the page normally.
 
 This reload approach might sound a little hacky at first, but it’s actually
@@ -151,12 +151,12 @@ user decides to bypass, and then call the callback, telling the navigation stack
 to resume the request. Under the hood, though, the navigation stack isn’t really
 resuming anything on the wire: it’s just retrying the connection or resending
 the request. With committed interstitials, we’ve removed this network-stack
-abstraction of a paused request. When it encounters a problem, the network stack
-just says “Hey, I had a problem; I’m going to terminate the connection or
-request,” and the navigation stack tells the user “Hey, there was a problem,”
-and once the user decides to bypass the problem, the navigation stack reloads
-the page, trying a new connection. In other words: in most cases, committed
-interstitials and overlay interstitials look the same on the wire.
+abstraction of a paused request. When the network stack encounters a problem,
+the request is represented as done throughout the code base, and once the user
+decides to bypass the problem, the navigation stack reloads the page, trying a
+new connection. In other words: in most cases, committed interstitials and
+overlay interstitials look the same on the wire, even though they are
+represented differently in code.
 
 The main challenge with this approach is keeping track of this bypass state and
 scoping it appropriately. Sometimes not all requests should share the same
@@ -187,8 +187,8 @@ navigation from a.com to b.com triggers an authentication prompt, we don’t wan
 the user to become confused and unknowingly enter credentials for a.com in the
 b.com prompt. For this reason, we want to show a blank page underneath the
 prompt and we want to show “b.com” in the address bar, to make it as clear as
-possible that the user is authenticating to b.com. We consider the URL in the
-authentication prompt itself too easy to miss on its own.
+possible that the user is authenticating to b.com, not a.com. We consider the
+URL in the authentication prompt itself too easy to miss on its own.
 
 In other words, we want to show the modal dialog on top of a blank page between
 a.com and b.com, which will be dismissed if the user enters correct credentials
@@ -241,7 +241,7 @@ we should show an authentication prompt, when we should read and display the
 response from the server, etc.
 
 Authentication prompts also, belatedly, revealed a surprising fact about the
-committed interstitials rearchitecture: it’s actually
+committed interstitials re-architecture: it’s actually
 [web-exposed](https://github.com/whatwg/fetch/issues/1132). (“Web-exposed” is a
 jargon-y way of describing a browser change that web developers might notice or
 care about, usually because it could break websites that were depending on the
