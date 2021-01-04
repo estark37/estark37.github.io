@@ -5,6 +5,7 @@ title: Speaking
 
 Here is a selected list of talks I've given:
 
+* [When security meets compatibility](https://youtu.be/RZIOHRZUvtc) (ACSAC 2020 keynote)
 * [Protecting users on a thriving web](https://youtu.be/WnCKlNE52tc) (Chrome Dev Summit 2019)
 * [The URLephant in the Room](https://youtu.be/RPoAc0ScdTM) ([USENIX Enigma
   2019](https://www.usenix.org/conference/enigma2019))

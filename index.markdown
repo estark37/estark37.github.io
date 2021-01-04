@@ -2,17 +2,21 @@
 layout: home
 ---
 
-Hello! I'm a software engineer working on the Google Chrome web browser. I lead
-Chrome's usable security team. We build features in Chrome that help people make
-safe decisions on the web. We also conduct quantitative field
-[research](publications.html) about how these features work and consult
-extensively with other teams as part of Chrome's security review process. Some
-of my major Chrome projects have included: promoting HTTPS adoption, improving
-and resolving unnecessary HTTPS certificate errors, building tools to help
+Hello! I'm a software engineer and manager working on the Google Chrome web
+browser. I lead Chrome's "Trusty Transport" team. We provide a foundation of
+trustworthy, understandable encrypted and authenticated connections for the web.
+We work on HTTPS certificate verification, ecosystem improvements like
+Certificate Transparency, the TLS stack, and connection security UX (such as
+site identity in the address bar and certificate warnings). I also co-lead a
+cross-functional virtual team of usable security experts who provide consulting
+and security reviews across Chrome. Much of my work involves quantitative field
+[research](publications.html) about how Chrome's security features work. Some of
+my major Chrome projects have included: promoting HTTPS adoption, improving and
+resolving unnecessary HTTPS certificate errors, building tools to help
 developers roll out more secure configurations, and building new warnings for
 spoofy domains.
 
-I've worked on Chrome for about 5 years. Before that, I was a core developer on
+I've worked on Chrome for about 6 years. Before that, I was a core developer on
 Meteor, a JavaScript application framework.
 
 I received my bachelor's degree from Stanford University and master's degree
