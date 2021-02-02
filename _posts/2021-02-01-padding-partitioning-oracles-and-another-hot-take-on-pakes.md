@@ -298,18 +298,23 @@ multi-collision to guess from a set of passwords. The fake server observes the
 client’s behavior (which is the partitioning oracle) to determine whether the
 real password is in their set of guessed passwords.
 
-My hot take is that these new aPAKE partitioning oracle attacks have little
-practical impact. I don’t know of any aPAKE deployment where the client can be
-tricked into making many login requests, or even any login requests, without
-human user involvement. My extensive research (aka,
+My hot take is that these new aPAKE partitioning oracle attacks don't have as
+much immediate practical impact as other oracle attacks. I don’t know of any
+aPAKE deployment where the client can be tricked into making many login
+requests, or even any login requests, without human user involvement. My
+extensive research (aka,
 [polling](https://twitter.com/estark37/status/1354667657413369858) my Twitter
-followers) didn’t turn up many plausible scenarios. The most plausible idea was
-a password manager that stores the aPAKE password and automatically logs the
-user in upon request. But, password managers usually wouldn’t initiate a login
-request without some kind of human interaction, since people usually don’t want
-to be identified to servers without their consent. Human interaction on each
-guess is downright prohibitive for any guessing attack, even one that is
-dramatically sped up over brute-force one-by-one guessing.
+followers) didn’t turn up many plausible scenarios. One possible setting is in
+the case of a password manager that stores the aPAKE password and automatically
+logs the user in upon request. But, password managers usually wouldn’t initiate
+a login request without some kind of human interaction, since people usually
+don’t want to be identified to servers without their consent. This means that
+the attacker would have to wait for the client to initiate each login request,
+plus the error would likely be user-visible, raising the likelihood of detection
+and lowering the probability of success. And, if the aPAKE were integrated with
+TLS or another form of server authentication, the attacker might (depending on
+the specific integration) have to break TLS over a long period of time to
+execute the attack.
 
 In the paper, the authors give the example of malicious JavaScript on an
 attacker-controlled web server that initiates many aPAKE login requests. This
@@ -326,13 +331,16 @@ about why I don’t think PAKEs are coming to the web or web browsers, and that
 further cements my skepticism about the practicality of this attack.
 
 Don’t get me wrong: partitioning oracle attacks in aPAKEs are weaknesses that
-should be fixed. But, I do think they will remain confined to the world of
-theoretical attacks. Generally I predict partitioning oracle attacks will have
-significant practical impact, perhaps as much as padding oracle attacks, but I
-think that impact will come from settings other than aPAKEs.
+should be fixed, and security experts should probably develop a set of best
+practices for implementors to follow to minimize susceptibility to such attacks.
+But, I do think these attacks will remain mostly confined to the theoretical
+world. Generally I predict partitioning oracle attacks will have significant
+practical impact, perhaps as much as padding oracle attacks, but I think that
+impact will come from settings other than aPAKEs.
 
-<small><i>Thanks to [Chris Palmer](https://noncombatant.org) for giving me
-feedback on an earlier version of this post.</i></small>
+<small><i>Thanks to [Chris Palmer](https://noncombatant.org) and [Jon
+Millican](https://twitter.com/jonmillican) for giving me feedback on an earlier
+version of this post.</i></small>
 
 [^1]: There could be some unlucky cases where the attack strategy doesn’t
     actually work. For example, suppose the original unpadded plaintext is 15
