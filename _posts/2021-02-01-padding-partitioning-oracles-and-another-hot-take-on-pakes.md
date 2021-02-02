@@ -24,19 +24,19 @@ have read the partitioning oracles paper or similar.
 
 In cryptography, “oracle” means a black-box function or system that takes an
 input and returns an output. In the context of an attack, an oracle is used to
-formally model an implementation error that gives the attacker some extra
-information. Oracles attacks are interesting and educational because they
+formally model unexpected information leakage that gives the attacker some extra
+information. Oracle attacks are interesting and educational because they
 illustrate why it’s so important that an encryption of a message reveals _no
 (efficiently computable) information_ about the message itself: even seemingly
 innocuous extraneous information can be used, surprisingly, to break the
 encryption scheme entirely.
 
 Typically, when cryptographers describe an attacker for a cryptosystem, they
-model the attacker as having certain capabilities, such as the capability to
-request encryptions for a reasonable number of messages of their choice. Then
-the attacker has a challenge that they have to solve, such as distinguishing an
-encryption of another message of their choice from an encryption of a random
-message.
+[model](https://en.wikipedia.org/wiki/Chosen-plaintext_attack) the attacker as
+having certain capabilities, such as the capability to request encryptions for a
+reasonable number of messages of their choice. Then the attacker has a challenge
+that they have to solve, such as distinguishing an encryption of another message
+of their choice from an encryption of a random message.
 
 But in a real implementation of that cryptosystem, the attacker might learn a
 lot more than is modeled in these formal enumerations of their capabilities. The
@@ -59,7 +59,8 @@ algorithms to process messages in blocks of 16 bytes, so messages have to be
 padded to a multiple of 16 bytes, with some well-defined and reversible padding
 scheme. One example of a padding scheme is to fill in the padding bytes with the
 length of the padding. In this scheme, a message of length 60 bytes will be
-padded with 4 bytes set to the value `0x04`.
+padded with 4 bytes set to the value `0x04`, so that the ciphertext is an even
+16 x 4 = 64 bytes long.
 
 When implementing cryptographic algorithms, it’s easy to accidentally provide a
 padding oracle to attackers. The oracle often comes from a timing side-channel,
@@ -81,10 +82,10 @@ encryption algorithm. The property is called _malleability_, and some common
 encryption algorithms have it and others don’t.)
 
 Suppose you’re using this encryption scheme with the padding scheme I described
-above: messages are padded with n bytes, each set to the value n, to extend the
-message length to a multiple of 16 bytes. We’ll say that there’s always at least
-one byte of padding added, so a message that is originally 16 bytes would be
-padded to 32 bytes.
+above: messages are padded with _n_ bytes, each set to the value _n_, to extend
+the message length to a multiple of 16 bytes. We’ll say that there’s always at
+least one byte of padding added, so a message that is originally 16 bytes would
+be padded to 32 bytes.
 
 Now consider an attacker who has some ciphertext which is an encryption of a
 message _m_, and the attacker wants to learn what _m_ is. The attacker can
@@ -96,11 +97,16 @@ the attacker’s algorithm:
   this by searching for how to transform the original message into a message
   that has only one byte of padding. The attacker iteratively chooses a byte _b_
   from `0x01` to `0xff`, and at each iteration, the attacker xors the last byte
-  of the ciphertext with _b_ and queries to see if the padding is valid. When
-  the attacker finds a value for b that produces valid padding, then the
-  attacker has learned that the last byte of the message xored with _b_ is
-  (probably[^1]) equal to `0x01`, which allows them to recover the actual last
-  byte of the message -- the length of the original message’s padding.
+  of the ciphertext with _b_ and queries to see if the padding is valid.
+  (Technically we don't have to check every possible value of _b_, because we
+  know there are only so many possible values of the real underlying padding
+  byte, but that's an optimization we can ignore for simplicity.)
+    * When the attacker finds a value for b that produces valid padding, then
+      the attacker has learned that the last byte of the message xored with _b_
+      is (probably[^1]) equal to `0x01`, which allows them to recover the actual
+      last byte of the message -- the length of the original message’s padding.
+    * If every possible value of _b_ results in a padding error, then the
+      attacker knows that the actual padding value is `0x01`.
 * Suppose the attacker has now discovered that there are 3 bytes of padding in
   the original message, so the last 3 bytes of the message are `0x03`. The
   attacker is now going to search for the value of the 4th-to-last byte of the
@@ -109,12 +115,14 @@ the attacker’s algorithm:
   then searching for how to transform the 4th-to-last byte to `0x04`:
   * To transform the last 3 bytes of the underlying message from `0x03` to
     `0x04`, the attacker xors the last 3 bytes of the ciphertext with `0x07`
-    (because `0x03 ^ 0x07 = 0x04`).
-  * Now the attacker again iterates from _b_ = `0x01` to `0xff` and xors the
-    4th-to-last byte of the ciphertext with _b_. When the attacker finds a value
-    of _b_ that produces valid padding, they know that the 4th-to-last byte’s
-    value xored with _b_ is (again, probably) `0x04`, and from that they can
-    recover that byte’s value.
+    (because `0x03 ⊕ 0x07 = 0x04`).
+  * If at this point the ciphertext produces valid padding, then the attacker
+    knows that the 4th-to-last byte is `0x04`.
+  * Otherwise, now the attacker again iterates from _b_ = `0x01` to `0xff` and
+    xors the 4th-to-last byte of the ciphertext with _b_. When the attacker
+    finds a value of _b_ that produces valid padding, they know that the
+    4th-to-last byte’s value xored with _b_ is (again, probably) `0x04`, and
+    from that they can recover that byte’s value.
 * Now it’s a simple matter of iterating this procedure for each remaining byte,
   from last to first, to recover the entire message!
 
@@ -148,7 +156,7 @@ Password-based cryptosystems are inherently weaker than systems where a key is
 chosen at random. The space of passwords is usually smaller than the space of
 possible keys, and passwords can be chosen weakly, often coming from a large
 dictionary of common passwords. Password-based cryptosystems aim to at least
-avoid offline brute force attackers, where an attacker can eavesdrop on some
+avoid offline brute-force attackers, where an attacker can eavesdrop on some
 communication and then try a bunch of different passwords offline. Instead, the
 attacker should be forced to interact with the legitimate parties; in the real
 world, this is a significant deterrent since the attacker will be subject to
@@ -228,7 +236,7 @@ perform a binary search.
 
 Where might a partitioning oracle arise in practice? The paper has an in-depth
 case study of an encrypted UDP proxy protocol where the client and server share
-a password from which they derive an encryption key. The oracles arises from the
+a password from which they derive an encryption key. The oracle arises from the
 fact that, upon receiving an encrypted packet from the client, the proxy server
 opens a port (to listen to a response from the target server) if and only if the
 packet decrypts without error. Thus, an attacker can send an encrypted packet to
@@ -239,7 +247,7 @@ There are quite a few other details in there, both in the cryptography and the
 implementation, but that’s the basic idea of the attack. Most interestingly, the
 authors show how to construct key multi-collisions that decrypt to messages that
 pass format checks. In the encrypted proxy example, the attack only works if the
-ciphertext decrypts to a message that starts with 0x01. Constructing this kind
+ciphertext decrypts to a message that starts with `0x01`. Constructing this kind
 of collision requires some good luck, so it doesn’t scale to arbitrary format
 checks. In fact, one of the authors’ suggestions for fixing key multi-collisions
 is to change encryption schemes to prepend 16 zero bytes to messages and check
@@ -310,21 +318,28 @@ follows the example of
 and other attacks which initiate multiple requests from JavaScript to attack
 session cookies or other secrets. I find this to be an unrealistic attack
 setting for aPAKEs on several levels. First, web browsers don’t generally
-implement aPAKES, and if they did and integrated them with browser-based
+implement aPAKEs, and if they did and integrated them with browser-based
 password managers, I imagine that each login request would require user
 interaction, as I just explained. Further, I previously wrote up a different
 [hot take](https://emilymstark.com/2020/07/30/should-web-apps-use-pakes.html)
 about why I don’t think PAKEs are coming to the web or web browsers, and that
 further cements my skepticism about the practicality of this attack.
 
-Don’t get me wrong: partitioning oracle attacks in aPAKEs are weaknesses that should be fixed. But, I do think they will remain confined to the world of theoretical attacks. Generally I predict partitioning oracle attacks will have significant practical impact, perhaps as much as padding oracle attacks, but I think that impact will come from settings other than aPAKEs.
+Don’t get me wrong: partitioning oracle attacks in aPAKEs are weaknesses that
+should be fixed. But, I do think they will remain confined to the world of
+theoretical attacks. Generally I predict partitioning oracle attacks will have
+significant practical impact, perhaps as much as padding oracle attacks, but I
+think that impact will come from settings other than aPAKEs.
+
+<small><i>Thanks to [Chris Palmer](https://noncombatant.org) for giving me
+feedback on an earlier version of this post.</i></small>
 
 [^1]: There could be some unlucky cases where the attack strategy doesn’t
     actually work. For example, suppose the original unpadded plaintext is 15
     bytes long and ends in `0x02`. The padded plaintext’s last two bytes would
     be `0x02 0x01` (the original unpadded message’s last byte, followed by one
     byte of padding). In this case, a choice of _b_ = `0x03` would produce valid
-    padding, because the transformed plaintext would end in `0x02 0x01 ^ 0x03` =
+    padding, because the transformed plaintext would end in `0x02 0x01 ⊕ 0x03` =
     `0x02 0x02` -- a valid padding of two bytes. So the attacker has unwittingly
     transformed the plaintext so that it ends up with two bytes of padding
     instead of one, which is what the attacker was searching for. We could
