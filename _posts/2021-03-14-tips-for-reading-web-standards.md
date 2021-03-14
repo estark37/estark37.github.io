@@ -104,18 +104,15 @@ reveals that this spec doesn’t say anything about 404s specifically (or 200s,
 for that matter). Scanning the Table of Contents, I scan through the names of
 algorithms in the [Response verification
 algorithms](https://w3c.github.io/webappsec-subresource-integrity/#verification-algorithms)
-section, and see that [3.3.5 Does response match
-metadataList?](https://w3c.github.io/webappsec-subresource-integrity/#does-response-match-metadatalist)
+section, and see that [3.3.5 Do _bytes_ match
+_metadataList_?](https://w3c.github.io/webappsec-subresource-integrity/#does-response-match-metadatalist)
 looks like the main algorithm that checks the `integrity` attribute. It doesn’t
-say anything about 404s, so I check an algorithm that it calls into which looks
-possibly relevant: [3.3.2. Is response eligible for integrity
-validation?](https://w3c.github.io/webappsec-subresource-integrity/#is-response-eligible)
-Nothing about 404s there, either. From there I hop over to the [Fetch
+say anything about 404s. From there I hop over to the [Fetch
 spec](https://fetch.spec.whatwg.org/) and search for SRI to see where Fetch
 calls into SRI. (There’s a little bit of institutional knowledge here -- I
 already know that Fetch is often the right place to look when I’m looking for
 something that happens while a resource is being loaded from the network.) In
-Step 15 of [Main Fetch](https://fetch.spec.whatwg.org/#main-fetch), I see that
+Step 22 of [Main Fetch](https://fetch.spec.whatwg.org/#main-fetch), I see that
 network errors are exempted from SRI checks, but 404s probably wouldn’t be
 considered a network error, so I conclude that SRI is indeed applied to 404
 responses.
