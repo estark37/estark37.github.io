@@ -121,6 +121,17 @@ The general point is that I answered this question by following references
 within and among standards, not by reading any one particular standard straight
 through.
 
+(_Update March 16, 2021_: This hypothetical example query actually led to an
+interesting
+[discussion](https://twitter.com/BRIAN_____/status/1371180858208444420) on
+Twitter; it's not entirely clear whether it's intentional and/or desired
+behavior that SRI is enforced for non-200 responses. The discussion very nicely
+illustrates my concluding point below that spec authors are friendly humans who
+don't bite! [Brian
+Smith](https://twitter.com/BRIAN_____/status/1371643736959053829)'s additional
+takeaways from this discussion: "There are frequently errors in specs, and not
+every error gets fixed. And maybe sometimes ignorance is bliss.")
+
 ## Make a mental glossary
 
 Like many types of technical writing, standards often use fancy language for
@@ -128,9 +139,10 @@ simple concepts. I gave an example above: you can often substitute a simple
 phrase like “web browser” for “user agent”. Another example is “browsing
 context” in
 [HTML](https://html.spec.whatwg.org/multipage/browsers.html#browsing-context),
-which (as the spec notes) you can often think of as a tab or window in a
-browser. Usually, I find that making these substitutions as I read improves my
-comprehension.
+which (as the spec notes) you can often think of as a frame, either top-level or
+embedded, within a browser window or tab. Usually, I find that making these
+substitutions as I read improves my comprehension. (Thanks to Nasko Oskov for a
+correction in this paragraph.)
 
 One final tip: spec editors usually don’t bite, and their documents aren’t set
 in stone. If you find a problem with a spec, whether it’s a typo or a major
