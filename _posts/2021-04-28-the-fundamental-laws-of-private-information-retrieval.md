@@ -187,7 +187,7 @@ PIR scheme is:
     sends back the exclusive-or of all the values of elements indexed by that
     set.
   * The client exclusive-ors the two responses together, and ends up with the
-    value of the _i_th element. Voila!
+    value of the *i*th element. Voila!
 
 In this scheme, each of the server sees a completely random set of elements (the
 “exclusive-or” of an element with a random set produces a random set, just as
