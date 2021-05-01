@@ -45,25 +45,32 @@ There are various different flavors of PIR. Most relevantly to this post, a PIR
 scheme can be:
 
   * **Information-theoretically secure vs. computationally secure**. As in other
-    types of cryptography, information theoretically secure means that what the
-    attacker sees is uniformly randomly distributed across the set of possible
-    messages: there is literally zero information about what element is being
-    queried in the messages that the attacker sees. In other words, the client’s
-    queries are distributed identically regardless of which database element the
-    client is querying for. Computationally secure, on the other hand, means
-    that the distribution that the attacker sees may not be actually uniformly
-    random, but it’s computationally indistinguishable from random. In the case
-    of computationally secure PIR, no efficient (polynomially-bounded) attacker
-    can distinguish a query for one element from a query for another element.
+    types of cryptography, information theoretically secure means that an
+    attacker with no limits on their computational power or time still cannot
+    break the scheme. What the attacker sees is uniformly randomly distributed
+    across the set of possible messages: there is literally zero information
+    about what element is being queried in the messages that the attacker
+    sees. In other words, the client’s queries are distributed identically
+    regardless of which database element the client is querying
+    for. Computationally secure, on the other hand, means that the distribution
+    that the attacker sees may not be actually uniformly random, but it’s
+    computationally indistinguishable from random. In the case of
+    computationally secure PIR, no efficient (polynomially-bounded) attacker can
+    distinguish a query for one element from a query for another element. In the
+    rest of this post, I'll be talking almost exclusively about
+    information-theoretical PIR.
   * **Single-server vs. multi-server**. The single-server setting is the
     straightforward setting I described initially: a server holds a database of
     bits, and a client exchanges messages with the server to retrieve the bit at
     an index of interest. In the multi-server setting, there are multiple
     servers that each hold a copy of the database, and the client exchanges
     messages with these multiple servers to query the index of
-    interest. Importantly, the servers are assumed to be non-colluding; that is,
-    the security of the scheme only holds if the servers don’t exchange
-    information with each other.
+    interest. Multi-server is typically used in information theoretic PIR,
+    because, as you will see below, multiple servers are necessary for
+    efficiency in the information theoretic setting. Importantly, the servers
+    are assumed to be non-colluding; that is, the information-theoretic security
+    of the scheme only holds if the servers don’t exchange information with each
+    other.
   * **Entirely online vs. offline/online**. So far I’ve described entirely
     online PIR, meaning that the entire protocol happens at query time. There
     are also schemes that introduce a preprocessing phase (where the server does
@@ -120,18 +127,19 @@ databases: that is, every possible database must have at least one unique
 transcript for querying element _i_, therefore there must be at least _2^n_
 possible protocol transcripts, requiring _n_ bits to communicate.
 
-Introducing a second server effectively relaxes the privacy requirement, which
-allows more efficient communication. In a multi-server protocol, it’s not
-required that any transcript _T_ for fetching some index also be a valid
-transcript for fetching every other index of the same database. It’s only
-required that the part of the transcript that _each server_ sees is valid for
-fetching every other index. It’s therefore no longer necessary that every
-possible database has at least one of its own unique transcripts for fetching
-_i_. Different databases can “share” the same transcript for fetching _i_
-without violating privacy because it’s not a requirement that the same full
-transcript also be valid for an element where the databases differ. Since
-different databases can share transcripts in this sense, the set of possible
-transcripts need not be as large as in the single-server setting.
+Introducing a second server effectively relaxes the privacy requirement
+(assuming the servers don't collude with each other), which allows more
+efficient communication. In a multi-server protocol, it’s not required that any
+transcript _T_ for fetching some index also be a valid transcript for fetching
+every other index of the same database. It’s only required that the part of the
+transcript that _each server_ sees is valid for fetching every other index. It’s
+therefore no longer necessary that every possible database has at least one of
+its own unique transcripts for fetching _i_. Different databases can “share” the
+same transcript for fetching _i_ without violating privacy because it’s not a
+requirement that the same full transcript also be valid for an element where the
+databases differ. Since different databases can share transcripts in this sense,
+the set of possible transcripts need not be as large as in the single-server
+setting.
 
 ### Law of PIR #2: Adding servers cannot reduce server computation costs, though they may be able to reduce communication costs.
 
@@ -144,7 +152,8 @@ My (completely wrong) initial intuition was that schemes with multiple servers
 would be able to reduce server computation costs. It seemed to me that one
 server would have to touch fewer bits if there was another server that was
 touching other bits that the first server couldn’t see. But it turns out that
-server computation cannot be sublinear even in a multi-server scheme.
+server computation cannot be sublinear even in a multi-server scheme if you want
+information theoretic security.
 
 I didn’t go read the formal proof of this law, but it does start to feel
 intuitive after a while. If the client is querying for element _i_, at least one
@@ -338,10 +347,11 @@ online/offline scheme is the way it is because (a) multiple servers are
 necessary to achieve information-theoretic security efficiently, (b)
 single-server computational security can be constructed in a black-box way from
 a two server information-theoretic scheme, (c) multiple servers are needed to
-reduce communication, but adding more than two servers doesn’t necessarily
-reduce communication further, and (d) an offline phase is needed to reduce
-server computation. Wphew! Now that I’ve gotten nerd-sniped by all that, maybe
-someday I will write the blog post I intended to write, of which PIR was just a
-small part.
+reduce communication for information theoretic security, but adding more than
+two servers doesn’t necessarily reduce communication further, and (d) an offline
+phase is needed to reduce server computation. Wphew! Now that I’ve gotten
+nerd-sniped by all that, maybe someday I will write the blog post I intended to
+write, of which PIR was just a small part.
 
-<small><i>Thanks to Lea Kissner and Joe Hall for giving me feedback on this post!</i></small>
+<small><i>Thanks to Lea Kissner, Joe Hall, and Chelsea Komlo for giving me
+feedback on this post!</i></small>
