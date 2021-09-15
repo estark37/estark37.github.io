@@ -256,7 +256,7 @@ multiple servers. Threat modelling is a lot simpler when the browser vendor is
 not the attacker we’re concerned about (for example, querying a phishing
 blocklist provided by someone other than the browser vendor, or ODoH). But even
 when the browser vendor isn't in the picture, whether you trust two
-organizations to node collude is still a complicated social, legal, and
+organizations to not collude is still a complicated social, legal, and
 technical question.
 
 ## Pitfalls
@@ -293,11 +293,11 @@ it is the ideal goal (in fact the OHTTP spec is pretty
 about this). In most applications that I can think of, individual queries can be
 sensitive in particular circumstances, even if they aren’t linked to particular
 users. For example, anonymous DNS queries usually aren’t sensitive, but
-occasionally they are -- for example, an uptick of traffic to a particular
-hostname, even if not linked to specific users, might indicate an impending
-product launch. I’ve also often seen developers assume that URLs are not
-sensitive if they are not linked to a particular user, but as noted above,
-capability URLs are a counter-example to this belief.
+occasionally they are -- an uptick of traffic to a particular hostname, even if
+not linked to specific users, might indicate an impending product launch. I’ve
+also often seen developers assume that URLs are not sensitive if they are not
+linked to a particular user, but as noted above, capability URLs are a
+counter-example to this belief.
 
 In addition, in many browsing applications, side channels may be a threat to
 unlinkability. For example, the attacker may be able to distinguish which
