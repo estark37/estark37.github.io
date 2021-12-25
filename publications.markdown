@@ -7,6 +7,9 @@ title: Publications
 
 The following is a reverse chronological list of my academic publications:
 
+[Certificate Transparency in Google Chrome: Past, Present, and Future](https://www.computer.org/csdl/magazine/sp/2021/06/09592820/1y4kcFXOwes).
+__Emily Stark__, Joe DeBlasio, Devon O'Brien. _IEEE Security & Privacy, vol. 19, no. 06, 2021_.
+
 [Measuring Identity Confusion with Uniform Resource Locators](https://research.google/pubs/pub49166/).
 Joshua Reynolds, Deepak Kumar, Zane Ma, Rohan Subramanian, Meishan Wu, Martin
 Shelton, Joshua Mason, __Emily Stark__, Michael Bailey. _ACM Conference on Human
