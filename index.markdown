@@ -16,7 +16,7 @@ resolving unnecessary HTTPS certificate errors, building tools to help
 developers roll out more secure configurations, and building new warnings for
 spoofy domains.
 
-I've worked on Chrome for about 6 years. Before that, I was a core developer on
+I've worked on Chrome for about 7 years. Before that, I was a core developer on
 Meteor, a JavaScript application framework.
 
 I received my bachelor's degree from Stanford University and master's degree
@@ -27,7 +27,6 @@ and serving on program committees.
 
 Other places on the web you can find me:
 * [Chromium commits](https://chromium-review.googlesource.com/q/owner:estark%2540chromium.org)
- ([and some older ones](https://codereview.chromium.org/search?closed=1&owner=estark%40chromium.org&reviewer=&cc=&repo_guid=&base=&project=&private=1&commit=1&created_before=&created_after=&modified_before=&modified_after=&order=&format=html&keys_only=False&with_messages=False&cursor=&limit=30))
 * [GitHub](https://www.github.com/estark37/) (mostly used for web standards work these days)
 * [Twitter](https://twitter.com/estark37/)
 * [Stack Overflow](https://stackoverflow.com/users/1867669/emily)
@@ -37,5 +36,5 @@ You can read popular press about my work
 [here](https://www.bbc.com/news/technology-47071518), and
 [here](https://www.economist.com/science-and-technology/2015/07/30/the-big-bug-hunt).
 
-Outside of work, I live with my husband and ~~one~~ two! year old son in the San
+Outside of work, I live with my spouse and two sons in the San
 Francisco Bay Area. I enjoy baking, reading, yoga, and hiking in my free time.

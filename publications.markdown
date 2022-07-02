@@ -7,6 +7,15 @@ title: Publications
 
 The following is a reverse chronological list of my academic publications:
 
+[“It builds trust with the customers” - Exploring User Perceptions of the Padlock Icon in Browser UI](https://research.google/pubs/pub51481/).
+Emanuel von Zezschwitz, __Emily Stark__, Serena Chen. _3rd Workshop of
+Designing Security for the Web (SecWeb 2022)_.
+
+[SoK: SCT Auditing in Certificate Transparency](https://research.google/pubs/pub51480/).
+Sarah Meiklejohn, Joe DeBlasio, Devon O’Brien, Chris Thompson, Kevin
+Yeo, __Emily Stark__. _Proceedings on Privacy Enhancing Technologies,
+2022_.
+
 [Certificate Transparency in Google Chrome: Past, Present, and Future](https://www.computer.org/csdl/magazine/sp/2021/06/09592820/1y4kcFXOwes).
 __Emily Stark__, Joe DeBlasio, Devon O'Brien. _IEEE Security & Privacy, vol. 19, no. 06, 2021_.
 
@@ -71,15 +80,17 @@ Factors in Computing Systems (CHI), 2009_.
 # Program committees and service
 
 I've served on program committees for [USENIX Security
-2018](https://www.usenix.org/conference/usenixsecurity18), [IEEE Symposium on
-Security and Privacy 2020](https://www.ieee-security.org/TC/SP2020/) and
-[2021](https://www.ieee-security.org/TC/SP2021/), [SecWeb
-2020](https://secweb.work/2020.html) and [The Web Conference
+2018](https://www.usenix.org/conference/usenixsecurity18),
+[2022](https://www.usenix.org/conference/usenixsecurity22), and
+[2023](https://www.usenix.org/conference/usenixsecurity23); [IEEE
+Symposium on Security and Privacy
+2020](https://www.ieee-security.org/TC/SP2020/) and
+[2021](https://www.ieee-security.org/TC/SP2021/); [SecWeb
+2020](https://secweb.work/2020.html) and
+[2021](https://secweb.work/2021.html); and [The Web Conference
 2020](https://www2020.thewebconf.org/) and
-[2021](https://www2021.thewebconf.org/). In 2021 I'll be an associate chair for
-[IEEE Symposium on Security and Privacy
-2022](https://www.ieee-security.org/TC/SP2022/cfpapers.html), and a program
-committee member for [USENIX Security
-2022](https://www.usenix.org/conference/usenixsecurity22) and [SecWeb
-2021](https://secweb.work/). I co-chaired the [USENIX HotSec
+[2021](https://www2021.thewebconf.org/). In 2021 I was an associate
+chair for [IEEE Symposium on Security and Privacy
+2022](https://www.ieee-security.org/TC/SP2022/cfpapers.html), and in
+2019 I co-chaired the [USENIX HotSec
 2019](https://www.usenix.org/conference/hotsec19) workshop.
