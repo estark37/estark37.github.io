@@ -80,8 +80,14 @@ into the log as presented to Google will be detected probabilistically
 (in expectation, if a malicious certificate is used on 10,000
 connections, log misbehavior will be detected, though this probability
 is tweakable in exchange for some privacy and performance
-tradeoffs). There is no real defense against a log that maliciously
-presents different sets of certificates to different observers.
+tradeoffs). Building on that, Google can and does "gossip" with other
+parties to detect when they may be seeing different views of the same
+log, mitigating split view attacks -- though there isn't yet
+universally implemented. (Thanks to
+[Andrew Ayer](https://twitter.com/__agwa/status/1562520912960036864) for a
+correction in this paragraph, pointing out that Google does in fact
+gossip with his [Cert Spotter](https://sslmate.com/certspotter/)
+monitoring tool and that gossip is not a theoretically hard problem.)
 
 CT also has an Achilles' heel: what is a domain owner supposed to
 actually do if they find a malicious certificate for their domain in a
