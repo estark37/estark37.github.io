@@ -90,7 +90,7 @@ gradually pieced together the answers to these questions, many of which involve
 several fundamental laws of PIR, and I think I better understand now what
 various design choices can or cannot buy you in a PIR scheme.
 
-### Law of PIR #1: Information theoretically secure PIR cannot be more efficient than sending the whole database.
+### Law of PIR #1: Information theoretically secure single-server PIR cannot be more efficient than sending the whole database.
 
 The first law of PIR is that if you want information theoretical security and
 you want efficiency, then you must have more than one server. And there seem to
@@ -143,8 +143,8 @@ setting.
 
 ### Law of PIR #2: Adding servers cannot reduce server computation costs, though they may be able to reduce communication costs.
 
-This law breaks down into two parts: why more servers can't reduce computation,
-and why more servers can reduce communication.
+This law breaks down into two parts: why more servers _can't_ reduce computation,
+and why more servers _can_ reduce communication.
 
 #### Why can't more servers reduce computation?
 
