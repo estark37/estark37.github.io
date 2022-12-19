@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Death to the line of death"
+title:  "The death of the line of death"
 ---
 
 The line of death, as Eric Lawrence explained in a classic
