@@ -5,6 +5,7 @@ title: Speaking
 
 Here is a selected list of talks I've given:
 
+* [The dirty laundry of the web PKI](https://www.usenix.org/conference/enigma2023/presentation/stark) (USENIX Enigma 2023)
 * [When security meets compatibility](https://youtu.be/RZIOHRZUvtc) (ACSAC 2020 keynote)
 * [Protecting users on a thriving web](https://youtu.be/WnCKlNE52tc) (Chrome Dev Summit 2019)
 * [The URLephant in the Room](https://youtu.be/RPoAc0ScdTM) ([USENIX Enigma
