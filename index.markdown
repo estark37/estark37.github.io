@@ -2,22 +2,20 @@
 layout: home
 ---
 
-Hello! I'm a software engineer and manager working on the Google Chrome web
-browser. I lead Chrome's "Trusty Transport" team. We provide a foundation of
-trustworthy, understandable encrypted and authenticated connections for the web.
-We work on HTTPS certificate verification, ecosystem improvements like
-Certificate Transparency, the TLS stack, and connection security UX (such as
-site identity in the address bar and certificate warnings). I also co-lead a
-cross-functional virtual team of usable security experts who provide consulting
-and security reviews across Chrome. Much of my work involves quantitative field
-[research](publications.html) about how Chrome's security features work. Some of
-my major Chrome projects have included: promoting HTTPS adoption, improving and
-resolving unnecessary HTTPS certificate errors, building tools to help
-developers roll out more secure configurations, and building new warnings for
-spoofy domains.
-
-I've worked on Chrome for about 7 years. Before that, I was a core developer on
-Meteor, a JavaScript application framework.
+Hello! I'm a software engineer and manager working on the Google
+Chrome web browser. I lead Chrome's Secure Web and Network team,
+responsible for web platform and transport security. Some current
+areas of focus for my team include the Chrome Root Program and
+certificate verification, Chrome's underlying TLS and cryptography
+library (BoringSSL), post-quantum cryptography, mitigating cross-site
+leaks, and expanding the cryptographic capabilities of web
+applications. I also lead a cross-functional virtual team of usable
+security experts who provide consulting and security reviews across
+Chrome. Throughout my time working on Chrome, I have promoted adoption
+and secure configuration of HTTPS, built new detection heuristics and
+warnings for spoofy domains, improved security UX more broadly, and
+participated in or led various
+[field research and measurement](publications.html) projects.
 
 I received my bachelor's degree from Stanford University and master's degree
 from MIT (both in computer science). As a student, most of my research centered
