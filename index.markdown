@@ -2,20 +2,17 @@
 layout: home
 ---
 
-Hello! I'm a software engineer and manager working on the Google
-Chrome web browser. I lead Chrome's Secure Web and Network team,
-responsible for web platform and transport security. Some current
-areas of focus for my team include the Chrome Root Program and
-certificate verification, Chrome's underlying TLS and cryptography
-library (BoringSSL), post-quantum cryptography, mitigating cross-site
-leaks, and expanding the cryptographic capabilities of web
-applications. I also lead a cross-functional virtual team of usable
-security experts who provide consulting and security reviews across
-Chrome. Throughout my time working on Chrome, I have promoted adoption
-and secure configuration of HTTPS, built new detection heuristics and
-warnings for spoofy domains, improved security UX more broadly, and
-participated in or led various
-[field research and measurement](publications.html) projects.
+Hello! I'm a software engineer and manager specializing in software security.
+
+Until mid-2026, I worked on Google Chrome's security team and led teams
+responsible for network security, cryptography, web platform security, security
+UX, and counter-abuse (fighting threats like social engineering and scams).
+During my time on Chrome, I helped deploy post-quantum cryptography in TLS,
+launched the Chrome Root Program, expanded adoption of HTTPS across the web,
+and built new detection heuristics and warnings for spoofy domains.
+
+In 2026 I'll be starting a new role working on agentic security and
+vulnerability discovery in Google's central product security team.
 
 I received my bachelor's degree from Stanford University and master's degree
 from MIT (both in computer science). As a student, most of my research centered
